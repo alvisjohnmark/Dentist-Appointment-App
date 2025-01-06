@@ -1,21 +1,22 @@
 <template>
   <nav
-    class="container bg-white mx-auto flex justify-between items-center py-4 px-6 shadow-md md:h-32"
+    class="sticky top-0 container bg-white mx-auto flex justify-between items-center py-4 px-6 shadow-md md:h-32 "
   >
-
     <div class="hidden md:flex space-x-6 text-gray12 font-light">
-      <a href="#" class="text-black">Home</a>
-      <a href="#" class="text-black">Location</a>
-      <a href="#" class="text-black">Services</a>
-      <a href="#" class="text-black">About us</a>
+      <a href="#" class="text-black font-semibold">Home</a>
+      <a href="#" class="text-black font-semibold">Location</a>
+      <a href="#" class="text-black font-semibold">Services</a> 
+      <a href="#" class="text-black font-semibold">About us</a>
     </div>
 
-    <div class="text-center text-black font-light md:text-3xl tracking-wide ">
+    <div class="text-center text-black font-light md:text-3xl tracking-wide">
       EVERWHITE DENTAL CLINIC
     </div>
 
     <div class="hidden md:flex space-x-6 items-center font-light">
-      <button class="bg-green10 text-white px-4 py-2 rounded-md">Contact us</button>
+      <button class="bg-green10 text-white px-4 py-2 rounded-md">
+        Contact us
+      </button>
       <button class="bg-cyan8 text-white px-4 py-2 rounded-md">Book now</button>
     </div>
 
@@ -33,18 +34,21 @@
           stroke-linejoin="round"
           d="M4 6h16M4 12h16m-7 6h7"
         />
-      </svg>
+      </svg> 
     </button>
   </nav>
 
-  <div v-if="isMenuOpen" class="md:hidden bg-indigo3 border-t border-gray-200 z-50">
+  <div
+    v-if="isMenuOpen"
+    class="sticky top-14 md:hidden bg-indigo3 border-t border-gray-200 z-50"
+  >
     <div class="py-4 px-6 space-y-4 text-gray12 font-light">
       <a href="#" class="block text-black">Home</a>
       <a href="#" class="block text-black">Location</a>
       <a href="#" class="block text-black">Services</a>
       <a href="#" class="block text-black">About us</a>
       <a href="#" class="block text-black">Contacts</a>
-      <button class="bg-green10 text-white px-4  w-full py-2">Contact us</button>
+      <button class="bg-green10 text-white px-4 w-full py-2">Contact us</button>
       <button class="bg-cyan8 text-white w-full px-4 py-2">Book now</button>
     </div>
   </div>
@@ -65,5 +69,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
