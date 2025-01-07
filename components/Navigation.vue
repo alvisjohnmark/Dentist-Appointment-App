@@ -1,12 +1,15 @@
 <template>
   <nav
-    class="sticky top-0 container bg-white mx-auto flex justify-between items-center py-4 px-6 shadow-md md:h-32 "
+    class="sticky top-0 container bg-white mx-auto flex justify-between items-center py-4 px-6 shadow-md md:h-32 w-full"
   >
     <div class="hidden md:flex space-x-6 text-gray12 font-light">
-      <a href="#" class="text-black font-semibold">Home</a>
-      <a href="#" class="text-black font-semibold">Location</a>
-      <a href="#" class="text-black font-semibold">Services</a> 
-      <a href="#" class="text-black font-semibold">About us</a>
+      <NuxtLink to="/" class="text-black font-light">Home</NuxtLink>
+      <NuxtLink to="/location" class="text-black font-light"
+        >Location</NuxtLink
+      >
+      <NuxtLink to="/appointments" class="text-black font-light"
+        >Appointments</NuxtLink
+      >
     </div>
 
     <div class="text-center text-black font-light md:text-3xl tracking-wide">
@@ -17,56 +20,56 @@
       <button class="bg-green10 text-white px-4 py-2 rounded-md">
         Contact us
       </button>
-      <button class="bg-cyan8 text-white px-4 py-2 rounded-md">Book now</button>
+      <NuxtLink to="/book" class="bg-cyan8 text-white px-4 py-2 rounded-md"
+        >Book now</NuxtLink
+      >
     </div>
 
     <button @click="toggleMenu" class="md:hidden focus:outline-none text-black">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="2"
-        stroke="currentColor"
-        class="w-6 h-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M4 6h16M4 12h16m-7 6h7"
-        />
-      </svg> 
+      <Menu />
     </button>
   </nav>
 
+  <!-- Sidebar -->
   <div
     v-if="isMenuOpen"
-    class="sticky top-14 md:hidden bg-indigo3 border-t border-gray-200 z-50"
+    class="fixed top-0 right-0 w-3/4 h-full bg-white z-50 overflow-auto md:hidden shadow-md"
   >
     <div class="py-4 px-6 space-y-4 text-gray12 font-light">
-      <a href="#" class="block text-black">Home</a>
-      <a href="#" class="block text-black">Location</a>
-      <a href="#" class="block text-black">Services</a>
-      <a href="#" class="block text-black">About us</a>
-      <a href="#" class="block text-black">Contacts</a>
+      <button
+        @click="toggleMenu"
+        class="absolute top-4 right-4 text-black focus:outline-none"
+      >
+        <X />
+      </button>
+      <NuxtLink to="/" class="block text-black">Home</NuxtLink>
+      <NuxtLink to="/location" class="block text-black">Location</NuxtLink>
+      <NuxtLink to="/appointments" class="block text-black"
+        >Appointments</NuxtLink
+      >
       <button class="bg-green10 text-white px-4 w-full py-2">Contact us</button>
-      <button class="bg-cyan8 text-white w-full px-4 py-2">Book now</button>
+      <button class="bg-cyan8 text-white w-full px-4 py-2">
+        <NuxtLink to="/book">Book now</NuxtLink>
+      </button>
     </div>
   </div>
+
+  <div
+    v-if="isMenuOpen"
+    @click="toggleMenu"
+    class="fixed inset-0 bg-black bg-opacity-50 z-40"
+  ></div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isMenuOpen: false,
-    };
-  },
-  methods: {
-    toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
-    },
-  },
-};
+<script setup>
+import { X, Menu } from 'lucide-vue-next';
+import { ref } from "vue";
+
+const isMenuOpen = ref(false);
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value; // Update the ref value correctly
+}
 </script>
 
 <style></style>
