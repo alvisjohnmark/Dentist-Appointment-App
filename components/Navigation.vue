@@ -4,9 +4,7 @@
   >
     <div class="hidden md:flex space-x-6 text-gray12 font-light">
       <NuxtLink to="/" class="text-black font-light">Home</NuxtLink>
-      <NuxtLink to="/location" class="text-black font-light"
-        >Location</NuxtLink
-      >
+      <NuxtLink to="/location" class="text-black font-light">Location</NuxtLink>
       <NuxtLink to="/appointments" class="text-black font-light"
         >Appointments</NuxtLink
       >
@@ -42,13 +40,22 @@
       >
         <X />
       </button>
-      <NuxtLink to="/" class="block text-black">Home</NuxtLink>
-      <NuxtLink to="/location" class="block text-black">Location</NuxtLink>
-      <NuxtLink to="/appointments" class="block text-black"
+      <NuxtLink to="/" class="block text-black" @click="toggleMenu"
+        >Home</NuxtLink
+      >
+      <NuxtLink to="/location" class="block text-black" @click="toggleMenu"
+        >Location</NuxtLink
+      >
+      <NuxtLink to="/appointments" class="block text-black" @click="toggleMenu"
         >Appointments</NuxtLink
       >
-      <button class="bg-green10 text-white px-4 w-full py-2">Contact us</button>
-      <button class="bg-cyan8 text-white w-full px-4 py-2">
+      <button
+        class="bg-green10 text-white px-4 w-full py-2"
+        @click="toggleMenu"
+      >
+        Contact us
+      </button>
+      <button class="bg-cyan8 text-white w-full px-4 py-2" @click="toggleMenu">
         <NuxtLink to="/book">Book now</NuxtLink>
       </button>
     </div>
@@ -62,7 +69,7 @@
 </template>
 
 <script setup>
-import { X, Menu } from 'lucide-vue-next';
+import { X, Menu } from "lucide-vue-next";
 import { ref } from "vue";
 
 const isMenuOpen = ref(false);
