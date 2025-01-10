@@ -19,26 +19,7 @@ export const useAuthStore = defineStore("auth", {
       this.user = data.user;
       return data;
     },
-
-    async signInWithGoogle() {
-      const { $supabase } = useNuxtApp();
-      const { data, error } = await $supabase.auth.signInWithOAuth({
-        provider: "google",
-      });
-
-      if (error) {
-        console.error("Google Login Error:", error);
-        throw error;
-      }
-
-      if (data?.user) {
-        this.user = data.user; 
-        return data.user;
-      } else {
-        throw new Error("Google login did not return user data");
-      }
-    },
-
+    
     async signOut() {
       const { $supabase } = useNuxtApp();
       const { error } = await $supabase.auth.signOut();

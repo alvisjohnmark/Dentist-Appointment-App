@@ -2,25 +2,13 @@
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="bg-white p-6 rounded-lg shadow-lg w-96">
       <h2 class="text-2xl font-semibold text-gray-800 text-center mb-2">
-       Sign in to Everwhite Dental Clinic
+        Sign in to Everwhite Dental Clinic
       </h2>
       <p class="text-sm text-gray-600 text-center mb-6">
         Welcome back! Please sign in to continue
       </p>
-      <button
-        @click="handleGoogleLogin"
-        class="flex items-center justify-center w-full py-2 px-4 bg-gray-100 border border-gray-300 rounded-md text-sm font-medium text-gray-600 hover:bg-gray-200 mb-4"
-      >
-        <span class="mr-2">
-         
-        </span>
-        Continue with Google
-      </button>
-      <div class="flex items-center justify-center mb-4">
-        <span class="border-t border-gray-300 w-1/5"></span>
-        <span class="text-gray-500 text-sm px-2">or</span>
-        <span class="border-t border-gray-300 w-1/5"></span>
-      </div>
+
+
       <div>
         <label for="email" class="block text-sm font-medium text-gray-600">
           Email address
@@ -46,39 +34,21 @@
 
 <script setup>
 definePageMeta({
-  layout: 'custom',
+  layout: "custom",
 });
-import { ref } from 'vue';
-import { useAuthStore } from '~/stores/useAuthStore';
-import { useRouter } from 'vue-router';
+import { ref } from "vue";
+import { useAuthStore } from "~/stores/useAuthStore";
+import { useRouter } from "vue-router";
 
-const email = ref('');
+const email = ref("");
 const authStore = useAuthStore();
-const router = useRouter()
+const router = useRouter();
 
 const handleEmailLogin = async () => {
   try {
     await authStore.signInWithEmail(email.value);
   } catch (error) {
     console.error(error);
-  }
-};
-
-const handleGoogleLogin = async () => {
-  try {
-    const { $supabase } = useNuxtApp();
-    const { data, error } = await $supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-
-    if (error) throw error;
-
-    if (data && data.user) {
-      authStore.user = data.user;
-      router.push("/admin/dashboard"); 
-    }
-  } catch (error) {
-    console.error("Login Error:", error);
   }
 };
 
